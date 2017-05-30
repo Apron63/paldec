@@ -13,7 +13,7 @@ use dosamigos\datepicker\DatePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'num')->textInput(['autofocus' => 'on', 'autocomplete' => 'off']) ?>
+    <?= $form->field($model, 'num')->textInput(['autofocus' => 'on', 'maxlength' => 25,'autocomplete' => 'off']) ?>
 
     <?= $form->field($model, 'model_id')->dropDownList($model->modelList)?>
 
@@ -25,12 +25,42 @@ use dosamigos\datepicker\DatePicker;
         )?>
     </div>
 
+    <?= $form->field($model, 'place')->textInput(['maxlength' => 25, 'autocomplete' => 'off']) ?>
+
+    <?= $form->field($model, 'seal')->textInput(['maxlength' => 25, 'autocomplete' => 'off']) ?>
+
     <?= $form->field($model, 'date_verification')->widget(DatePicker::className(), [
         'inline' => false,
         'language' => 'ru',
         'template' => '{addon}{input}',
         'options' => [
                 'value' => date('d.m.Y', $model->date_verification),
+        ],
+        'clientOptions' => [
+            'autoclose' => true,
+            'format' => 'dd.mm.yyyy',
+        ]
+    ]);?>
+
+    <?= $form->field($model, 'date_made')->widget(DatePicker::className(), [
+        'inline' => false,
+        'language' => 'ru',
+        'template' => '{addon}{input}',
+        'options' => [
+            'value' => date('d.m.Y', $model->date_made),
+        ],
+        'clientOptions' => [
+            'autoclose' => true,
+            'format' => 'dd.mm.yyyy',
+        ]
+    ]);?>
+
+    <?= $form->field($model, 'date_set')->widget(DatePicker::className(), [
+        'inline' => false,
+        'language' => 'ru',
+        'template' => '{addon}{input}',
+        'options' => [
+            'value' => date('d.m.Y', $model->date_set),
         ],
         'clientOptions' => [
             'autoclose' => true,

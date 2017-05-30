@@ -19,6 +19,7 @@ use yii\grid\GridView;
         ],
         //'modelName',
         'num',
+        'place',
         [
             'attribute' => 'date_verification',
             'value' => function($model){

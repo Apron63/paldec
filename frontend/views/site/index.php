@@ -37,7 +37,7 @@ $this->title = 'Информация по счетчикам';
         </div>
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-5">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Организации</h3>
@@ -99,7 +99,7 @@ $this->title = 'Информация по счетчикам';
         </div>
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-7">
 
         <div class="panel panel-primary">
             <div class="panel-heading">

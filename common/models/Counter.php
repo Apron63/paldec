@@ -28,11 +28,11 @@ class Counter extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['model_id', 'num', 'date_verification'], 'required'],
+            [['model_id', 'num', 'place', 'date_verification'], 'required'],
             [['model_id'], 'integer'],
             ['company_id', 'safe'],
-            [['num'], 'string', 'max' => 25],
-            ['date_verification', 'filter', 'filter' => function ($value) {
+            [['num', 'place','seal'], 'string', 'max' => 25],
+            [['date_verification', 'date_made', 'date_set'], 'filter', 'filter' => function ($value) {
                 return strtotime($value);
             }],
         ];
@@ -48,7 +48,11 @@ class Counter extends \yii\db\ActiveRecord
             'company_id' => 'Организация',
             'model_id' => 'Модель',
             'num' => 'Номер',
-            'date_verification' => 'Поверка',
+            'place' => 'Место установки',
+            'date_verification' => 'Дата поверки',
+            'date_made' => 'Дата изготовления',
+            'date_set' => 'Дата установки',
+            'seal' => 'Номер пломбы',
         ];
     }
     /*******************************************************************************************/
