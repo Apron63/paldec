@@ -55,7 +55,7 @@ $this->title = 'Информация по счетчикам';
                             'format'=>'raw',
                             'value' => function($model) {
                                 return '<span  style="white-space: normal;">'
-                                    . $model->short_name
+                                    . Html::button($model->short_name, ['class' => 'btn btn-link get-counters', 'data-id' => $model->id])
                                     .  '</span>'
                                 ;
                             },
@@ -65,19 +65,18 @@ $this->title = 'Информация по счетчикам';
                             'class' => 'yii\grid\ActionColumn',
                             'controller' => 'company',
                             'header' => Html::a('Создать', ['/company/create'], ['class' => 'btn btn-success', 'title' => 'Добавить новую организацию']),
-                            'template' => '{select} {update} {delete}',
+                            'template' => '{update} {delete}',
                             'contentOptions' => [
                                 'width' => 100,
                             ],
                             'buttons' => [
-                                'select' => function ($url, $model) {
+                                /*'select' => function ($url, $model) {
                                     return Html::button('<span class="glyphicon glyphicon-zoom-in"></span>',  [
                                         'title' => 'Выбрать',
                                         'class'=>'btn btn-primary btn-xs get-counters',
                                         'data-id' => $model->id,
-                                        //'onclick' => 'asdfr(' . $model->id . ')',
                                     ]);
-                                },
+                                },*/
                                 'update' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-edit"></span>', $url, [
                                         'title' => 'Редактировать',

@@ -6,9 +6,12 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Company */
 /* @var $form yii\widgets\ActiveForm */
-?>
 
+$this->title = 'Добавить модель счетчика';
+?>
 <div class="add-counter">
+
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin(); ?>
 

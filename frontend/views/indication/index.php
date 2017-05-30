@@ -25,13 +25,44 @@ $this->title = 'Показания счетчика';
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'counter_id',
-            'date',
+            [
+                'attribute' => 'date',
+                'value' => function($model){
+                    return date('d.m.Y', $model->date);
+                },
+            ],
             'value',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header' => Html::a('Создать', ['/indication/create', 'company-id' => 33], ['class' => 'btn btn-success', 'title' => 'Добавить новое показание']),
+                'template' => '{update} {delete}',
+                'contentOptions' => [
+                    'width' => 100,
+                ],
+                'buttons' => [
+                    'update' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-edit"></span>', $url, [
+                            'title' => 'Редактировать',
+                            'class'=>'btn btn-primary btn-xs',
+                        ]);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
+                            'title' => 'Удалить',
+                            'class'=>'btn btn-primary btn-xs',
+                            'data-method' => 'post',
+                            'data-confirm' => 'Действительно удалить счетчик?',
+                        ]);
+                    },
+                    'indication' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-dashboard"></span>', 'indication/index?id=' . $model->id, [
+                            'title' => 'Показания',
+                            'class'=>'btn btn-primary btn-xs',
+                        ]);
+                    },
+                ],
+            ],
         ],
     ]); ?>
 </div>

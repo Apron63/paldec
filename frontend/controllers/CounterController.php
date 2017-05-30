@@ -128,7 +128,20 @@ class CounterController extends Controller
         }
     }
 
-    public function actionAddModel($id)
+    public function actionAddModelFromCreate($company_id)
+    {
+        $model = new CounterModel();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['/counter/create', 'company-id' => $company_id]);
+        } else {
+            return $this->render('add-model', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionAddModelFromUpdate($id)
     {
         $model = new CounterModel();
 

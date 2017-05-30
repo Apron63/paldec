@@ -10,7 +10,7 @@ use yii\grid\GridView;
 
 <?= GridView::widget([
     'dataProvider' => $dataProviderA,
-    'filterModel' => $searchModelA,
+    //'filterModel' => $searchModelA,
     'id' => 'counter-table',
     'columns' => [
         [
@@ -50,8 +50,7 @@ use yii\grid\GridView;
                 'indication' => function ($url, $model) {
                     return Html::a('<span class="glyphicon glyphicon-dashboard"></span>', 'indication/index?id=' . $model->id, [
                         'title' => 'Показания',
-                        'class'=>'btn btn-primary btn-xs get-counters',
-                        //'data-id' => $model->id,
+                        'class'=>'btn btn-primary btn-xs',
                     ]);
                 },
             ],

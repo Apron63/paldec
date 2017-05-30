@@ -18,7 +18,11 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'model_id')->dropDownList($model->modelList)?>
 
     <div class="form-group">
-        <?= Html::a('Добавить модель', ['/counter/add-model', 'id' => $model->id], ['class' => 'btn btn-success'])?>
+
+        <?= Html::a('Добавить модель',
+            $model->isNewRecord ? ['/counter/add-model-from-create', 'company_id' => $model->company_id] : ['/counter/add-model-from-update', 'id' => $model->id],
+            ['class' => 'btn btn-success']
+        )?>
     </div>
 
     <?= $form->field($model, 'date_verification')->widget(DatePicker::className(), [
@@ -26,11 +30,11 @@ use dosamigos\datepicker\DatePicker;
         'language' => 'ru',
         'template' => '{addon}{input}',
         'options' => [
-                'value' => date('d-m-Y', $model->date_verification),
+                'value' => date('d.m.Y', $model->date_verification),
         ],
         'clientOptions' => [
             'autoclose' => true,
-            'format' => 'dd-mm-yyyy',
+            'format' => 'dd.mm.yyyy',
         ]
     ]);?>
 

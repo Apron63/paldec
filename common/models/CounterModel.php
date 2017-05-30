@@ -30,7 +30,7 @@ class CounterModel extends \yii\db\ActiveRecord
             [['name', 'period'], 'required'],
             [['period'], 'integer'],
             [['name'], 'string', 'max' => 25],
-            [['name'], 'unique'],
+            [['name'], 'unique', 'message' => 'Такая модель уже существует'],
         ];
     }
 
