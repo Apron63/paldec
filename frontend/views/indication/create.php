@@ -7,8 +7,8 @@ use yii\helpers\Html;
 /* @var $model common\models\Indication */
 
 $this->title = 'Добавить показание';
-$this->params['breadcrumbs'][] = ['label' => 'Indications', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = ['label' => 'Indications', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="indication-create">
 

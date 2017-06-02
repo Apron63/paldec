@@ -40,15 +40,23 @@ class IndicationSearch extends Indication
      */
     public function search($params)
     {
-        $query = Indication::find();
+        $this->load($params);
+
+        $query = Indication::find()->where(['counter_id' => $params['id']]);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'date' => SORT_DESC
+                ]
+            ],
         ]);
-
-        $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails

@@ -12,19 +12,19 @@ $this->title = 'Показания счетчика';
 ?>
 <div class="indication-index">
 
-    <h1><?= Html::encode($this->title . ':' . $counter->num) ?></h1>
+    <h1><?= Html::encode($this->title . ':' . $counter->num . ', ' . $counter->place) ?></h1>
     <p><?= Html::encode('Модель : ' . $counter->modelName . ' Поверка : ' . date('d.m.Y', $counter->date_verification))?></p>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
+    <!--<p>
         <?= Html::a('Создать показание', ['create', 'counter_id' => $counter->id], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Вернуться к списку счетчиков', ['back', 'counter_id' => Yii::$app->request->get('id')], ['class' => 'btn btn-primary']) ?>
-    </p>
+    </p> -->
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute' => 'date',
                 'value' => function($model){
@@ -35,7 +35,7 @@ $this->title = 'Показания счетчика';
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'header' => Html::a('Создать', ['/indication/create', 'company-id' => 33], ['class' => 'btn btn-success', 'title' => 'Добавить новое показание']),
+                'header' => Html::a('Создать', ['/indication/create', 'counter_id' => $counter->id], ['class' => 'btn btn-success', 'title' => 'Добавить новое показание']),
                 'template' => '{update} {delete}',
                 'contentOptions' => [
                     'width' => 100,

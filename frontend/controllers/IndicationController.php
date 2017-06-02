@@ -72,7 +72,7 @@ class IndicationController extends Controller
         $model->date = time();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['/indication/index', 'id' => $model->counter_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -91,7 +91,7 @@ class IndicationController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['/indication/index', 'id' => $model->counter_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -107,9 +107,11 @@ class IndicationController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        //$this->findModel($id)->delete();
+        $tmp = $this->findModel($id);
+        $tmp_id = $tmp->counter_id;
+        $tmp->delete();
+        return $this->redirect(['/indication/index', 'id' => $tmp_id]);
     }
 
     /**
