@@ -11,4 +11,9 @@ class ReportController extends Controller
     {
         require 'report/document.php';
     }
+
+    public function actionActPotr()
+    {
+        require 'report/act-potr.php';
+    }
 }

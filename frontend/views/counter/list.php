@@ -5,6 +5,20 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+$dropdown = <<<DROPDOWN
+<div class="dropdown">
+    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Операции
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="counter/create">Создать счетчик</a></li>
+        <li><a href="indication/mass-input">Массовый ввод</a></li>
+        <li><a href="report/act-potr">Акт потребления</a></li>
+  </ul>
+</div>
+DROPDOWN;
+
 ?>
 <p><?= $name?></p>
 
@@ -28,7 +42,8 @@ use yii\grid\GridView;
         ],
         [
             'class' => 'yii\grid\ActionColumn',
-            'header' => Html::a('Создать', ['/counter/create', 'company-id' => 33], ['class' => 'btn btn-success', 'title' => 'Добавить новый счетчик']),
+            //'header' => Html::a('Создать', ['/counter/create', 'company-id' => 33], ['class' => 'btn btn-success', 'title' => 'Добавить новый счетчик']),
+            'header' => $dropdown,
             'template' => '{update} {delete} {indication}',
             'contentOptions' => [
                 'width' => 100,

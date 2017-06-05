@@ -114,6 +114,11 @@ class IndicationController extends Controller
         return $this->redirect(['/indication/index', 'id' => $tmp_id]);
     }
 
+    public function actionMassInput()
+    {
+        echo "Mass";
+    }
+
     /**
      * Finds the Indication model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
