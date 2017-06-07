@@ -33,6 +33,7 @@ $this->title = 'Информация по счетчикам';
             </div>
             <div class="panel-body">
                 <?= Html::button('Просроченные', ['class' => 'btn btn-success', 'id' => 'get-modal']) ?>
+                <?= Html::button('Акт потребления', ['class' => 'btn btn-success', 'id' => 'act-potr']) ?>
             </div>
         </div>
     </div>
@@ -149,6 +150,16 @@ $("#get-modal").click(function(){
     }).done(function(data){
         $("#x-contens").html(data);
         $("#run-modal").attr("data-href", "report/counter-expired");
+        $("#x-modal").modal("toggle");    
+    });
+});
+
+$("#act-potr").click(function(){
+    $.ajax({
+        url: "site/fill-modal"
+    }).done(function(data){
+        $("#x-contens").html(data);
+        $("#run-modal").attr("data-href", "report/act-potr");
         $("#x-modal").modal("toggle");    
     });
 });
