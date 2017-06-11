@@ -81,4 +81,24 @@ class Counter extends \yii\db\ActiveRecord
     {
         return $this->companyId ? $this->companyId->short_name : 'Не отпределено';
     }
+
+    public function getCurrentReading($counter, $date)
+    {
+        $ind = \common\models\Indication::find()
+            ->where(['counter_id' => $counter])
+            ->andwhere(['<=', 'date', $date])
+            ->orderBy(['date' => SORT_DESC ])
+            ->one();
+        return $ind ? $ind->value : 0;
+    }
+
+    public function getPrevReading($counter, $date)
+    {
+        $ind = \common\models\Indication::find()
+            ->where(['counter_id' => $counter])
+            ->andwhere(['<=', 'date', $date-1])
+            ->orderBy(['date' => SORT_DESC ])
+            ->one();
+        return $ind ? $ind->value : 0;
+    }
 }
