@@ -34,6 +34,12 @@ $this->title = 'Информация по счетчикам';
             <div class="panel-body">
                 <?= Html::button('Просроченные', ['class' => 'btn btn-success', 'id' => 'get-modal']) ?>
                 <?= Html::button('Акт потребления', ['class' => 'btn btn-success', 'id' => 'act-potr']) ?>
+                <?= Html::button('<i class="glyphicon glyphicon-time"></i>', [
+                    'id' => 'arh-button',
+                    'class' => 'btn btn-default pull-right',
+                    'data-toggle' => 'button',
+                    'title' => 'Показать/скрыть счетчики в архиве'
+                ])?>
             </div>
         </div>
     </div>
@@ -168,6 +174,17 @@ $("#run-modal").click(function(){
     var x_date = $("#x-datepicker").val();
     document.location.href = $(this).attr("data-href") + "?date=" + x_date;
 });
+
+$("#arh-button").click(function(){
+    var st = $(this).attr("aria-pressed");
+    if (typeof st !== 'undefined') {
+        alert(999);
+        console.log($(this).attr("aria-pressed"));
+    } else {
+        alert(0);
+    }
+})
+
 JS;
 $this->registerJs($script, yii\web\View::POS_READY);
 ?>

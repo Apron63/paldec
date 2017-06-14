@@ -69,6 +69,8 @@ class CounterController extends Controller
         $model = new Counter();
         $model->company_id = Yii::$app->session->get('companyId');
         $model->date_verification = time();
+        $model->date_made = $model->date_verification;
+        $model->date_set = $model->date_verification;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['/']);
@@ -177,5 +179,15 @@ class CounterController extends Controller
         } else {
             return 0;
         }
+    }
+
+    public function actionGetArhStatus()
+    {
+
+    }
+
+    public function actionSetArhStatus()
+    {
+
     }
 }
