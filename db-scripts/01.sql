@@ -1,0 +1,1 @@
+ALTER TABLE `paldec_counter` ADD `arh` BOOLEAN NOT NULL AFTER `seal`;

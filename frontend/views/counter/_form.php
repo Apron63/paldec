@@ -68,6 +68,8 @@ use dosamigos\datepicker\DatePicker;
         ]
     ]);?>
 
+    <?= $form->field($model, 'arh')->checkbox(['label' => 'Перенесен в архив'])?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

@@ -26,6 +26,13 @@ DROPDOWN;
     'dataProvider' => $dataProviderA,
     //'filterModel' => $searchModelA,
     'id' => 'counter-table',
+    'rowOptions' => function ($model, $key, $index, $grid) {
+        if ($model->arh) {
+            return ['class' => 'arh-counter'];
+        } else {
+            return;
+        }
+    },
     'columns' => [
         [
             'attribute' => 'modelName',

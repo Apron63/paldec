@@ -131,6 +131,17 @@ $(window).load(function(){
         getCounters(id);
     }).fail(function(data){
     });
+    
+    $.ajax({
+        url: "counter/get-arh-status"
+    })
+    .done(function(status){
+        //alert(status);
+        //$("#arh-button").attr("aria-pressed", status);
+        $("#arh-button").attr("aria-pressed", false);
+    }).fail(function(data){
+        //alert(999);
+    });
 });
 
 $(".get-counters").click(function() {
@@ -177,12 +188,12 @@ $("#run-modal").click(function(){
 
 $("#arh-button").click(function(){
     var st = $(this).attr("aria-pressed");
-    if (typeof st !== 'undefined') {
-        alert(999);
-        console.log($(this).attr("aria-pressed"));
-    } else {
-        alert(0);
-    }
+    //alert(st);
+    if (typeof st === 'undefined') st = false;
+    $.ajax({
+        url: "counter/set-arh-status",
+        data: {status: st}
+    });
 })
 
 JS;

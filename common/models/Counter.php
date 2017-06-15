@@ -32,6 +32,7 @@ class Counter extends \yii\db\ActiveRecord
             [['model_id'], 'integer'],
             ['company_id', 'safe'],
             [['num', 'place','seal'], 'string', 'max' => 25],
+            ['arh', 'boolean'],
             [['date_verification', 'date_made', 'date_set'], 'filter', 'filter' => function ($value) {
                 return strtotime($value);
             }],

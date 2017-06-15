@@ -183,11 +183,16 @@ class CounterController extends Controller
 
     public function actionGetArhStatus()
     {
-
+        $st = Yii::$app->session->get('showArh');
+        if (isset($st)) {
+            return $st;
+        } else {
+            return false;
+        }
     }
 
-    public function actionSetArhStatus()
+    public function actionSetArhStatus($status)
     {
-
+        Yii::$app->session->set('showArh', $status);
     }
 }
