@@ -132,7 +132,7 @@ $(window).load(function(){
     }).fail(function(data){
     });
     
-    $.ajax({
+    /*$.ajax({
         url: "counter/get-arh-status"
     })
     .done(function(status){
@@ -141,7 +141,7 @@ $(window).load(function(){
         $("#arh-button").attr("aria-pressed", false);
     }).fail(function(data){
         //alert(999);
-    });
+    });*/
 });
 
 $(".get-counters").click(function() {
@@ -188,11 +188,20 @@ $("#run-modal").click(function(){
 
 $("#arh-button").click(function(){
     var st = $(this).attr("aria-pressed");
-    //alert(st);
     if (typeof st === 'undefined') st = false;
+    
     $.ajax({
         url: "counter/set-arh-status",
         data: {status: st}
+    });
+    
+    alert("status " + st);
+    
+    $.ajax({
+        url: "counter/get-company-id"
+    })
+    .done(function(id){
+        getCounters(id);
     });
 })
 

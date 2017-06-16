@@ -162,8 +162,10 @@ class CounterController extends Controller
             Yii::$app->session->set('companyId', $id);
             $name = Company::findOne(['id' => $id])->short_name;
         }
+
         $searchModelA = new CounterSearch();
         $dataProviderA = $searchModelA->search(Yii::$app->request->queryParams);
+
         return $this->renderAjax('list', [
             'name' => $name,
             'searchModelA' => $searchModelA,
