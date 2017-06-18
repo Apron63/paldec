@@ -195,6 +195,6 @@ class CounterController extends Controller
 
     public function actionSetArhStatus($status)
     {
-        Yii::$app->session->set('showArh', $status);
+        Yii::$app->session->set('showArh', filter_var($status,FILTER_VALIDATE_BOOLEAN));
     }
 }

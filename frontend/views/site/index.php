@@ -34,6 +34,7 @@ $this->title = 'Информация по счетчикам';
             <div class="panel-body">
                 <?= Html::button('Просроченные', ['class' => 'btn btn-success', 'id' => 'get-modal']) ?>
                 <?= Html::button('Акт потребления', ['class' => 'btn btn-success', 'id' => 'act-potr']) ?>
+                <?= Html::button('Сводный акт', ['class' => 'btn btn-success', 'id' => 'act-svod']) ?>
                 <?= Html::button('<i class="glyphicon glyphicon-time"></i>', [
                     'id' => 'arh-button',
                     'class' => 'btn btn-default pull-right',
@@ -131,17 +132,6 @@ $(window).load(function(){
         getCounters(id);
     }).fail(function(data){
     });
-    
-    /*$.ajax({
-        url: "counter/get-arh-status"
-    })
-    .done(function(status){
-        //alert(status);
-        //$("#arh-button").attr("aria-pressed", status);
-        $("#arh-button").attr("aria-pressed", false);
-    }).fail(function(data){
-        //alert(999);
-    });*/
 });
 
 $(".get-counters").click(function() {
@@ -181,6 +171,16 @@ $("#act-potr").click(function(){
     });
 });
 
+$("#act-svod").click(function(){
+    $.ajax({
+        url: "site/fill-modal"
+    }).done(function(data){
+        $("#x-contens").html(data);
+        $("#run-modal").attr("data-href", "report/act-svod");
+        $("#x-modal").modal("toggle");    
+    });
+});
+
 $("#run-modal").click(function(){
     var x_date = $("#x-datepicker").val();
     document.location.href = $(this).attr("data-href") + "?date=" + x_date;
@@ -194,8 +194,6 @@ $("#arh-button").click(function(){
         url: "counter/set-arh-status",
         data: {status: st}
     });
-    
-    alert("status " + st);
     
     $.ajax({
         url: "counter/get-company-id"

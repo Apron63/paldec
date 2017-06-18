@@ -25,8 +25,11 @@ for($i=0;$i<count($header);$i++)
 $pdf->Ln();
 
 /* DETAIL */
-//foreach ($cnt::find()->where(['date_verification' => time()])->orderBy('company_id')->each() as $row)
-foreach ($cnt::find()->where(['<=', 'date_verification', $checkDate])->orderBy('company_id')->each() as $row)
+foreach ($cnt::find()
+    ->where(['<=', 'date_verification', $checkDate])
+    ->andWhere(['arh' => false])
+    ->orderBy('company_id')
+    ->each() as $row)
 {
     $pdf->Cell(90,8,mb_convert_encoding($row->companyName, 'CP1251', 'UTF-8'),1);
     $pdf->Cell(25,8,mb_convert_encoding($row->modelName, 'CP1251', 'UTF-8'),1);

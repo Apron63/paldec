@@ -70,7 +70,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; MegaSoftInc <?= date('Y') ?></p>
+        <p class="pull-left">&copy; MegaSoft Inc &copy <?= date('Y') ?> ver.1.001</p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

@@ -42,13 +42,16 @@ class CounterSearch extends Counter
      */
     public function search($params)
     {
-
         $st = Yii::$app->session->get('showArh');
         if (!isset($st)) {
             $st = false;
         }
 
-        $query = Counter::find()->where(['company_id' => Yii::$app->session->get('companyId')]);
+        if ($st) {
+            $query = Counter::find()->where(['company_id' => Yii::$app->session->get('companyId'), 'arh' => false]);
+        } else {
+            $query = Counter::find()->where(['company_id' => Yii::$app->session->get('companyId')]);
+        }
 
         // add conditions that should always apply here
 
@@ -79,10 +82,6 @@ class CounterSearch extends Counter
         ]);
 
         $query->andFilterWhere(['like', 'num', $this->num]);
-
-        if ($st) {
-            $query->andFilterWhere(['arh' => false]);
-        }
 
         return $dataProvider;
     }

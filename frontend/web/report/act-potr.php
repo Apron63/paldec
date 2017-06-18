@@ -33,7 +33,10 @@ $tot = 0;
 
 /* DETAIL */
 //foreach ($cnt::find()->where(['date_verification' => time()])->orderBy('company_id')->each() as $row)
-foreach ($cnt::find()->where(['company_id' => Yii::$app->session->get('companyId')])->each() as $row)
+foreach ($cnt::find()
+    ->where(['company_id' => Yii::$app->session->get('companyId')])
+    ->andWhere(['arh' => false])
+    ->each() as $row)
 {
     $b = $row->getPrevReading($row->id, $checkDate);
     $e = $row->getCurrentReading($row->id, $checkDate);

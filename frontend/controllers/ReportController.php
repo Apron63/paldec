@@ -16,4 +16,9 @@ class ReportController extends Controller
     {
         require 'report/act-potr.php';
     }
+
+    public function actionActSvod()
+    {
+        require 'report/act-svod.php';
+    }
 }
