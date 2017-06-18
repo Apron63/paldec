@@ -105,7 +105,7 @@ class Counter extends \yii\db\ActiveRecord
             $ind = \common\models\Indication::find()
                 ->where(['counter_id' => $counter])
                 ->andwhere(['>', 'date', $tmpDate])
-                ->orderBy(['date' => SORT_DESC ])
+                ->orderBy(['date' => SORT_ASC ])
                 ->one();
         }
         return $ind ? $ind->value : 0;
