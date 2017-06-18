@@ -95,11 +95,19 @@ class Counter extends \yii\db\ActiveRecord
 
     public function getPrevReading($counter, $date)
     {
+        $tmpDate = strtotime('-1 month', $date);
         $ind = \common\models\Indication::find()
             ->where(['counter_id' => $counter])
-            ->andwhere(['<=', 'date', $date-1])
+            ->andwhere(['<=', 'date', $tmpDate])
             ->orderBy(['date' => SORT_DESC ])
             ->one();
+        if (!$ind) {
+            $ind = \common\models\Indication::find()
+                ->where(['counter_id' => $counter])
+                ->andwhere(['>', 'date', $tmpDate])
+                ->orderBy(['date' => SORT_DESC ])
+                ->one();
+        }
         return $ind ? $ind->value : 0;
     }
 }
