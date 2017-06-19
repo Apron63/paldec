@@ -163,7 +163,7 @@ $("#get-modal").click(function(){
 
 $("#act-potr").click(function(){
     $.ajax({
-        url: "site/fill-modal"
+        url: "site/fill-modal-range"
     }).done(function(data){
         $("#x-contens").html(data);
         $("#run-modal").attr("data-href", "report/act-potr");
@@ -173,7 +173,7 @@ $("#act-potr").click(function(){
 
 $("#act-svod").click(function(){
     $.ajax({
-        url: "site/fill-modal"
+        url: "site/fill-modal-range"
     }).done(function(data){
         $("#x-contens").html(data);
         $("#run-modal").attr("data-href", "report/act-svod");
@@ -183,7 +183,12 @@ $("#act-svod").click(function(){
 
 $("#run-modal").click(function(){
     var x_date = $("#x-datepicker").val();
-    document.location.href = $(this).attr("data-href") + "?date=" + x_date;
+    var y_date = $("#y-datepicker").val();
+    if (typeof y_date === 'undefined') {
+        document.location.href = $(this).attr("data-href") + "?date=" + x_date;
+    } else {
+        document.location.href = $(this).attr("data-href") + "?datex=" + x_date + "&datey=" + y_date;
+    }
 });
 
 $("#arh-button").click(function(){

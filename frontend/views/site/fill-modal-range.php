@@ -3,15 +3,22 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-use dosamigos\datepicker\DatePicker;
+//use dosamigos\datepicker\DatePicker;
+use dosamigos\datepicker\DateRangePicker;
 ?>
-<?= DatePicker::widget([
+<?= DateRangePicker::widget([
     'name' => 'date',
     'value' => date('d.m.Y'),
+    'nameTo' => 'dateTo',
+    'valueTo' => date('d.m.Y'),
+    'labelTo' => 'по',
     'language' => 'ru',
-    'template' => '{addon}{input}',
+
     'options' => [
         'id' => 'x-datepicker',
+    ],
+    'optionsTo' => [
+        'id' => 'y-datepicker',
     ],
     'clientOptions' => [
         'autoclose' => true,

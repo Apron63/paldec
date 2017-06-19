@@ -90,6 +90,11 @@ class SiteController extends Controller
         return $this->renderAjax('fill-modal');
     }
 
+    public function actionFillModalRange()
+    {
+        return $this->renderAjax('fill-modal-range');
+    }
+
     /**
      * Logs in a user.
      *
