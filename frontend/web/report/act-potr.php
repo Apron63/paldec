@@ -41,8 +41,8 @@ foreach ($cnt::find()
     ->andWhere(['arh' => false])
     ->each() as $row)
 {
-    $b = $row->getPrevReading($row->id, $checkDatey);
-    $e = $row->getCurrentReading($row->id, $checkDatex);
+    $b = $row->getPrevReading($row->id, $checkDatex);
+    $e = $row->getCurrentReading($row->id, $checkDatey);
     $c = $e - $b;
     $tot += $c;
 

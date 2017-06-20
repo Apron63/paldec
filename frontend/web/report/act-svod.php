@@ -49,8 +49,8 @@ foreach ($cnt::find()
         $company = $row->company_id;
         $tot = 0;
     }
-    $b = $row->getPrevReading($row->id, $checkDatey);
-    $e = $row->getCurrentReading($row->id, $checkDatex);
+    $b = $row->getPrevReading($row->id, $checkDatex);
+    $e = $row->getCurrentReading($row->id, $checkDatey);
     $c = $e - $b;
     $tot += $c;
     $sum += $c;
