@@ -14,10 +14,13 @@ $pdf->SetFont('Times','',10);
 
 /* HEADER */
 
-$x_date = yii::$app->request->get('date');
-$checkDate = strtotime($x_date);
+$x_date = yii::$app->request->get('datex');
+$checkDatex = strtotime($x_date);
+$y_date = yii::$app->request->get('datey');
+$checkDatey = strtotime($y_date);
+
 $firstBreak = true;
-$pdf->Cell(45,8,mb_convert_encoding('Сводный акт потребления на дату : ' . $x_date,'CP1251','UTF-8'));
+$pdf->Cell(45,8,mb_convert_encoding('Сводный акт с : ' . $x_date . ' по : ' . $y_date,'CP1251','UTF-8'));
 $pdf->Ln();
 $cnt = new common\models\Counter;
 
@@ -46,8 +49,8 @@ foreach ($cnt::find()
         $company = $row->company_id;
         $tot = 0;
     }
-    $b = $row->getPrevReading($row->id, $checkDate);
-    $e = $row->getCurrentReading($row->id, $checkDate);
+    $b = $row->getPrevReading($row->id, $checkDatey);
+    $e = $row->getCurrentReading($row->id, $checkDatex);
     $c = $e - $b;
     $tot += $c;
     $sum += $c;

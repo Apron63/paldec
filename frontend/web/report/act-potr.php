@@ -17,10 +17,13 @@ $pdf->SetFont('Times','',10);
 
 /* HEADER */
 
-$x_date = yii::$app->request->get('date');
-$checkDate = strtotime($x_date);
+$x_date = yii::$app->request->get('datex');
+$checkDatex = strtotime($x_date);
+$y_date = yii::$app->request->get('datey');
+$checkDatey = strtotime($y_date);
+
 $company = common\models\Company::findOne(['id' => $company_id]);
-$pdf->Cell(45,8,mb_convert_encoding('Акт потребления на дату : ' . $x_date,'CP1251','UTF-8'));
+$pdf->Cell(45,8,mb_convert_encoding('Акт потребления с : ' . $x_date . ' по : ' . $y_date,'CP1251','UTF-8'));
 $pdf->Ln();
 $pdf->Cell(45,8,mb_convert_encoding($company->short_name,'CP1251','UTF-8'));
 $pdf->Ln();
@@ -38,8 +41,8 @@ foreach ($cnt::find()
     ->andWhere(['arh' => false])
     ->each() as $row)
 {
-    $b = $row->getPrevReading($row->id, $checkDate);
-    $e = $row->getCurrentReading($row->id, $checkDate);
+    $b = $row->getPrevReading($row->id, $checkDatey);
+    $e = $row->getCurrentReading($row->id, $checkDatex);
     $c = $e - $b;
     $tot += $c;
 
